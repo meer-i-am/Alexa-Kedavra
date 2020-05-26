@@ -1,0 +1,859 @@
+[
+    {
+        "id": "6abe88c8.4d37c8",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "34c8a3a4.610c1c",
+        "type": "http in",
+        "z": "6abe88c8.4d37c8",
+        "name": "Echo request",
+        "url": "/alexa",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 150,
+        "y": 160,
+        "wires": [
+            [
+                "27ec97a4.6b7368",
+                "c829d417.e5ac28",
+                "7fa4588f.cf2a98"
+            ]
+        ]
+    },
+    {
+        "id": "27ec97a4.6b7368",
+        "type": "switch",
+        "z": "6abe88c8.4d37c8",
+        "name": "Request Type",
+        "property": "payload.request.type",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "IntentRequest",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 335,
+        "y": 160,
+        "wires": [
+            [
+                "ae287f32.b8b2"
+            ]
+        ]
+    },
+    {
+        "id": "ae287f32.b8b2",
+        "type": "switch",
+        "z": "6abe88c8.4d37c8",
+        "name": "Intents",
+        "property": "payload.request.intent.name",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "TurnOnLightIntent",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "PatronusIntent",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "FireIntent",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "AvadaIntent",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "TurnOffLightIntent",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "StopSpellIntent",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 6,
+        "x": 510,
+        "y": 160,
+        "wires": [
+            [
+                "1dffddb9.0ca582"
+            ],
+            [
+                "7b380d3c.5ff714"
+            ],
+            [
+                "63e9ac3d.bde6f4"
+            ],
+            [
+                "5bfffa87.00afe4"
+            ],
+            [
+                "961ee7e0.8e07d8"
+            ],
+            [
+                "cd5c2a73.937048"
+            ]
+        ]
+    },
+    {
+        "id": "1dffddb9.0ca582",
+        "type": "function",
+        "z": "6abe88c8.4d37c8",
+        "name": "Lumos",
+        "func": "msg.payload = {utterance:\"Lumos\",url:\"soundbank://soundlibrary/magic_spells/magic_spells_14\"};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 730,
+        "y": 60,
+        "wires": [
+            [
+                "3cba0728.f661c8",
+                "1368b686.ce2939"
+            ]
+        ],
+        "info": "Define Alexa response (spell name to repeat and URL of sound effect to play)"
+    },
+    {
+        "id": "961ee7e0.8e07d8",
+        "type": "function",
+        "z": "6abe88c8.4d37c8",
+        "name": "Nox",
+        "func": "msg.payload = {utterance:\"Nox\",url:\"soundbank://soundlibrary/home/amzn_sfx_door_shut_02\"};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 730,
+        "y": 320,
+        "wires": [
+            [
+                "90e99b24.0829f8",
+                "1368b686.ce2939"
+            ]
+        ],
+        "info": "Define Alexa response (spell name to repeat and URL of sound effect to play)"
+    },
+    {
+        "id": "3cba0728.f661c8",
+        "type": "delay",
+        "z": "6abe88c8.4d37c8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1500",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 960,
+        "y": 60,
+        "wires": [
+            [
+                "960bef54.d6193"
+            ]
+        ],
+        "info": "Insert delay to synchronize Alexa sound effect response with LIFX bulb response"
+    },
+    {
+        "id": "3d1430a0.eb5c9",
+        "type": "delay",
+        "z": "6abe88c8.4d37c8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "2500",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 1160,
+        "y": 420,
+        "wires": [
+            [
+                "683752c.0e39bac"
+            ]
+        ],
+        "info": "Insert delay to synchronize Alexa sound effect response with LIFX bulb response"
+    },
+    {
+        "id": "7b380d3c.5ff714",
+        "type": "function",
+        "z": "6abe88c8.4d37c8",
+        "name": "ExpectoPatronum",
+        "func": "msg.payload = {utterance:\"Expecto Patronum\",url:\"soundbank://soundlibrary/magic_spells/magic_spells_10\"};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 770,
+        "y": 141,
+        "wires": [
+            [
+                "a77b4842.c13f28",
+                "1368b686.ce2939"
+            ]
+        ],
+        "info": "Define Alexa response (spell name to repeat and URL of sound effect to play)"
+    },
+    {
+        "id": "63e9ac3d.bde6f4",
+        "type": "function",
+        "z": "6abe88c8.4d37c8",
+        "name": "Incendio",
+        "func": "msg.payload = {utterance:\"Incendio\",url:\"soundbank://soundlibrary/explosions/fire/fire_13\"};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 740,
+        "y": 200,
+        "wires": [
+            [
+                "172dd5a8.b3f66a",
+                "1368b686.ce2939"
+            ]
+        ],
+        "info": "Define Alexa response (spell name to repeat and URL of sound effect to play)"
+    },
+    {
+        "id": "5bfffa87.00afe4",
+        "type": "function",
+        "z": "6abe88c8.4d37c8",
+        "name": "AvadaKedavra",
+        "func": "msg.payload = {utterance:\"Avada Kedavra\",url:\"soundbank://soundlibrary/magic_spells/magic_spells_05\"};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 760,
+        "y": 260,
+        "wires": [
+            [
+                "916283fb.be71b",
+                "1368b686.ce2939"
+            ]
+        ],
+        "info": "Define Alexa response (spell name to repeat and URL of sound effect to play)"
+    },
+    {
+        "id": "916283fb.be71b",
+        "type": "delay",
+        "z": "6abe88c8.4d37c8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1500",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 960,
+        "y": 260,
+        "wires": [
+            [
+                "a6f63ad8.6486f8"
+            ]
+        ],
+        "info": "Insert delay to synchronize Alexa sound effect response with LIFX bulb response"
+    },
+    {
+        "id": "172dd5a8.b3f66a",
+        "type": "delay",
+        "z": "6abe88c8.4d37c8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1000",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 960,
+        "y": 200,
+        "wires": [
+            [
+                "4693e26a.03bb3c"
+            ]
+        ],
+        "info": "Insert delay to synchronize Alexa sound effect response with LIFX bulb response"
+    },
+    {
+        "id": "a77b4842.c13f28",
+        "type": "delay",
+        "z": "6abe88c8.4d37c8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1700",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 960,
+        "y": 140,
+        "wires": [
+            [
+                "38f2384d.f441c8"
+            ]
+        ],
+        "info": "Insert delay to synchronize Alexa sound effect response with LIFX bulb response"
+    },
+    {
+        "id": "3fc6c29.884cd3e",
+        "type": "switch",
+        "z": "6abe88c8.4d37c8",
+        "name": "CheckSat",
+        "property": "payload[0].color.saturation",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1000,
+        "y": 380,
+        "wires": [
+            [
+                "975e7d6f.28575"
+            ]
+        ],
+        "info": "The Nox spell should only work to turn off the light if Lumos was cast first.  Check that the Saturation of the LIFX bulb is equal to 0 (indicating that Lumos was cast) before turning off the light."
+    },
+    {
+        "id": "af57077a.6637a8",
+        "type": "http response",
+        "z": "6abe88c8.4d37c8",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1890,
+        "y": 340,
+        "wires": [],
+        "info": "Send Response back to Alexa"
+    },
+    {
+        "id": "1368b686.ce2939",
+        "type": "template",
+        "z": "6abe88c8.4d37c8",
+        "name": "Format response",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\n  \"version\": \"1.0\",\n  \"response\": {\n    \"outputSpeech\": {\n      \"type\": \"SSML\",\n      \"ssml\": \"<speak><amazon:emotion name=\\\"excited\\\" intensity=\\\"high\\\">{{payload.utterance}}</amazon:emotion> <audio src=\\\"{{{payload.url}}}\\\"/></speak>\"\n    },\n    \"shouldEndSession\": false\n  }\n}",
+        "output": "str",
+        "x": 1610,
+        "y": 340,
+        "wires": [
+            [
+                "af57077a.6637a8"
+            ]
+        ],
+        "info": "Format Alexa response containing spell name and sound effect"
+    },
+    {
+        "id": "c829d417.e5ac28",
+        "type": "debug",
+        "z": "6abe88c8.4d37c8",
+        "name": "EchoRequest",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 330,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "c98b77b2.47be58",
+        "type": "template",
+        "z": "6abe88c8.4d37c8",
+        "name": "Fallback 2",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\n  \"version\": \"1.0\",\n  \"response\": {\n    \"outputSpeech\": {\n      \"type\": \"SSML\",\n      \"ssml\": \"<speak><say-as interpret-as=\\\"interjection\\\">oh dear</say-as><emphasis level=\\\"strong\\\"><break strength=\\\"strong\\\"/>That's</emphasis> not a real spell, are you some sort of <emphasis>muggle?</emphasis> Give it another go.</speak>\"\n    },\n    \"shouldEndSession\": false\n  }\n}",
+        "output": "str",
+        "x": 1170,
+        "y": 740,
+        "wires": [
+            [
+                "388c2215.82e97e"
+            ]
+        ]
+    },
+    {
+        "id": "4260840.aa7407c",
+        "type": "switch",
+        "z": "6abe88c8.4d37c8",
+        "name": "Intents",
+        "property": "payload.request.intent.name",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "LevitateIntent",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "AMAZON.FallbackIntent",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "LaunchIntent",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 570,
+        "y": 780,
+        "wires": [
+            [
+                "ce762085.a5a73"
+            ],
+            [
+                "18051e10.dc3762"
+            ],
+            [
+                "f3698eb5.a86e9"
+            ]
+        ]
+    },
+    {
+        "id": "7fa4588f.cf2a98",
+        "type": "switch",
+        "z": "6abe88c8.4d37c8",
+        "name": "Request Type",
+        "property": "payload.request.type",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "IntentRequest",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "LaunchRequest",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "SessionEndedRequest",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 340,
+        "y": 820,
+        "wires": [
+            [
+                "4260840.aa7407c"
+            ],
+            [
+                "f3698eb5.a86e9"
+            ],
+            [
+                "dac244ba.006f38"
+            ]
+        ]
+    },
+    {
+        "id": "f3698eb5.a86e9",
+        "type": "template",
+        "z": "6abe88c8.4d37c8",
+        "name": "Launch",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\n  \"version\": \"1.0\",\n  \"response\": {\n    \"outputSpeech\": {\n      \"type\": \"SSML\",\n      \"ssml\": \"<speak>Which spell would you like to cast?</speak>\"\n    },\n    \"shouldEndSession\": false\n  }\n}",
+        "output": "str",
+        "x": 840,
+        "y": 860,
+        "wires": [
+            [
+                "388c2215.82e97e"
+            ]
+        ],
+        "info": "Response for LaunchRequest and LaunchIntent"
+    },
+    {
+        "id": "975e7d6f.28575",
+        "type": "delay",
+        "z": "6abe88c8.4d37c8",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "500",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 1150,
+        "y": 380,
+        "wires": [
+            [
+                "683752c.0e39bac"
+            ]
+        ],
+        "info": "Insert delay to synchronize Alexa sound effect response with LIFX bulb response"
+    },
+    {
+        "id": "388c2215.82e97e",
+        "type": "http response",
+        "z": "6abe88c8.4d37c8",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1590,
+        "y": 780,
+        "wires": [],
+        "info": "Send Response back to Alexa"
+    },
+    {
+        "id": "8702586e.a88478",
+        "type": "template",
+        "z": "6abe88c8.4d37c8",
+        "name": "Finite Response",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\n  \"version\": \"1.0\",\n  \"response\": {\n    \"outputSpeech\": {\n      \"type\": \"SSML\",\n      \"ssml\": \"<speak><amazon:emotion name=\\\"excited\\\" intensity=\\\"high\\\"><phoneme alphabet=\\\"x-sampa\\\" ph=\\\"fI.ni.teI\\\">Finite</phoneme> Incantatem</amazon:emotion> <audio src=\\\"soundbank://soundlibrary/explosions/fire/fire_12\\\"/></speak>\"\n    },\n    \"shouldEndSession\": true\n  }\n}",
+        "output": "str",
+        "x": 1600,
+        "y": 460,
+        "wires": [
+            [
+                "af57077a.6637a8"
+            ]
+        ],
+        "info": "Formatting of Finite Incantatem response using Phonemes so that Alexa properly prounouces the word 'Finite'"
+    },
+    {
+        "id": "cd5c2a73.937048",
+        "type": "function",
+        "z": "6abe88c8.4d37c8",
+        "name": "Finite",
+        "func": "/* This node does nothing*/\nmsg.payload = \"nothing\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 730,
+        "y": 440,
+        "wires": [
+            [
+                "3d1430a0.eb5c9",
+                "8702586e.a88478"
+            ]
+        ],
+        "info": "Define Alexa response (spell name to repeat and URL of sound effect to play)"
+    },
+    {
+        "id": "ce762085.a5a73",
+        "type": "template",
+        "z": "6abe88c8.4d37c8",
+        "name": "Wingardium Leviosa",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\n  \"version\": \"1.0\",\n  \"response\": {\n    \"outputSpeech\": {\n      \"type\": \"SSML\",\n      \"ssml\": \"<speak>It's <phoneme alphabet=\\\"x-sampa\\\" ph=\\\"lE.vi.%jO.s@\\\">Leviosa,</phoneme><break strength=\\\"medium\\\"/> not <phoneme alphabet=\\\"x-sampa\\\" ph=\\\"lE.vi.oU.%sAA\\\">Leviosa</phoneme></speak>\"\n    },\n    \"shouldEndSession\": true\n  }\n}",
+        "output": "str",
+        "x": 880,
+        "y": 640,
+        "wires": [
+            [
+                "388c2215.82e97e"
+            ]
+        ],
+        "info": "Formatting of Wingardium Leviosa response using Phonemes for proper pronunciation"
+    },
+    {
+        "id": "aa8b0216.1181",
+        "type": "switch",
+        "z": "6abe88c8.4d37c8",
+        "name": "Choose",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "2",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 997,
+        "y": 777,
+        "wires": [
+            [
+                "c98b77b2.47be58"
+            ],
+            [
+                "f78b9520.c1f8c8"
+            ]
+        ]
+    },
+    {
+        "id": "dac244ba.006f38",
+        "type": "template",
+        "z": "6abe88c8.4d37c8",
+        "name": "ExitResponse",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\n  \"version\": \"1.0\",\n  \"response\": {\n    \"outputSpeech\": {\n      \"type\": \"SSML\",\n      \"ssml\": \"<speak><say-as interpret-as=\\\"interjection\\\">tallyho</say-as></speak>\"\n    },\n    \"shouldEndSession\": true\n  }\n}",
+        "output": "str",
+        "x": 860,
+        "y": 920,
+        "wires": [
+            [
+                "388c2215.82e97e"
+            ]
+        ],
+        "info": "Response for SessionEndedRequest"
+    },
+    {
+        "id": "f78b9520.c1f8c8",
+        "type": "template",
+        "z": "6abe88c8.4d37c8",
+        "name": "Fallback 1",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\n  \"version\": \"1.0\",\n  \"response\": {\n    \"outputSpeech\": {\n      \"type\": \"SSML\",\n      \"ssml\": \"<speak><say-as interpret-as=\\\"interjection\\\">Codswallop!</say-as> Why don't you try a real spell instead?</speak>\"\n    },\n    \"shouldEndSession\": false\n  }\n}",
+        "output": "str",
+        "x": 1170,
+        "y": 780,
+        "wires": [
+            [
+                "388c2215.82e97e"
+            ]
+        ]
+    },
+    {
+        "id": "90e99b24.0829f8",
+        "type": "lifx-list-lights",
+        "z": "6abe88c8.4d37c8",
+        "name": "",
+        "api": "199ae9e2.62ed06",
+        "selector": "id: ",
+        "x": 860,
+        "y": 380,
+        "wires": [
+            [
+                "3fc6c29.884cd3e"
+            ]
+        ]
+    },
+    {
+        "id": "960bef54.d6193",
+        "type": "lifx-set-state",
+        "z": "6abe88c8.4d37c8",
+        "name": "TurnOnCmd",
+        "api": "199ae9e2.62ed06",
+        "selector": "id: ",
+        "power": "on",
+        "color": "white",
+        "brightness": "1",
+        "duration": "",
+        "infrared": "",
+        "fast": "true",
+        "x": 1170,
+        "y": 60,
+        "wires": [],
+        "info": "Send HTTPS command to LIFX bulb to turn on"
+    },
+    {
+        "id": "683752c.0e39bac",
+        "type": "lifx-set-state",
+        "z": "6abe88c8.4d37c8",
+        "name": "TurnOffCmd",
+        "api": "199ae9e2.62ed06",
+        "selector": "id: ",
+        "power": "off",
+        "color": "",
+        "brightness": "",
+        "duration": "",
+        "infrared": "",
+        "fast": "true",
+        "x": 1350,
+        "y": 420,
+        "wires": [],
+        "info": "Send HTTPS command to LIFX bulb to turn off"
+    },
+    {
+        "id": "a6f63ad8.6486f8",
+        "type": "lifx-pulse-effect",
+        "z": "6abe88c8.4d37c8",
+        "name": "AvadaKedavraCmd",
+        "api": "199ae9e2.62ed06",
+        "selector": "id: ",
+        "color": "green saturation:0.5",
+        "from_color": "green",
+        "period": "0.2",
+        "cycles": "10",
+        "persist": "false",
+        "power_on": "true",
+        "x": 1190,
+        "y": 260,
+        "wires": [],
+        "info": "Send HTTPS command to LIFX bulb to run the 'pulse effect'"
+    },
+    {
+        "id": "4693e26a.03bb3c",
+        "type": "lifx-breathe-effect",
+        "z": "6abe88c8.4d37c8",
+        "name": "IncendioCmd",
+        "api": "199ae9e2.62ed06",
+        "selector": "id: ",
+        "color": "hue:32 saturation:1  brightness:0.8",
+        "from_color": "hue:40 saturation:1  brightness:0.8",
+        "period": "0.6",
+        "cycles": "200",
+        "persist": "false",
+        "power_on": "true",
+        "peak": 0.5,
+        "x": 1170,
+        "y": 200,
+        "wires": [],
+        "info": "Send HTTPS command to LIFX bulb to run the 'breathe effect'"
+    },
+    {
+        "id": "38f2384d.f441c8",
+        "type": "lifx-breathe-effect",
+        "z": "6abe88c8.4d37c8",
+        "name": "ExpectoPatronumCmd",
+        "api": "199ae9e2.62ed06",
+        "selector": "id: ",
+        "color": "hue:230 saturation:0.4  brightness:1.0",
+        "from_color": "hue:230 saturation:0.1  brightness:0.1",
+        "period": "5",
+        "cycles": "1",
+        "persist": "false",
+        "power_on": "true",
+        "peak": "0.9",
+        "x": 1200,
+        "y": 140,
+        "wires": [],
+        "info": "Send HTTPS command to LIFX bulb to run the 'breathe effect'"
+    },
+    {
+        "id": "18051e10.dc3762",
+        "type": "random",
+        "z": "6abe88c8.4d37c8",
+        "name": "",
+        "low": "1",
+        "high": "2",
+        "inte": "true",
+        "property": "payload",
+        "x": 847,
+        "y": 777,
+        "wires": [
+            [
+                "aa8b0216.1181"
+            ]
+        ],
+        "info": "Randomly select Fallback Response"
+    },
+    {
+        "id": "9d79d296.c9759",
+        "type": "inject",
+        "z": "6abe88c8.4d37c8",
+        "name": "TestLumos",
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 580,
+        "y": 40,
+        "wires": [
+            [
+                "1dffddb9.0ca582"
+            ]
+        ]
+    },
+    {
+        "id": "3543357d.70a3ba",
+        "type": "inject",
+        "z": "6abe88c8.4d37c8",
+        "name": "TestNox",
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 540,
+        "y": 360,
+        "wires": [
+            [
+                "961ee7e0.8e07d8"
+            ]
+        ]
+    },
+    {
+        "id": "199ae9e2.62ed06",
+        "type": "lifx-config",
+        "z": 0,
+        "token": " "
+    }
+]

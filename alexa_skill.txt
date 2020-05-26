@@ -1,0 +1,120 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "my wand",
+            "modelConfiguration": {
+                "fallbackIntentSensitivity": {
+                    "level": "LOW"
+                }
+            },
+            "intents": [
+                {
+                    "name": "AMAZON.FallbackIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "TurnOnLightIntent",
+                    "slots": [],
+                    "samples": [
+                        "to cast the spell Lumos",
+                        "cast the spell lumos",
+                        "to cast Lumos",
+                        "cast Lumos",
+                        "Lumos"
+                    ]
+                },
+                {
+                    "name": "TurnOffLightIntent",
+                    "slots": [],
+                    "samples": [
+                        "to cast Nox",
+                        "to cast the spell Nox",
+                        "cast the spell Nox",
+                        "cast Nox",
+                        "Nox"
+                    ]
+                },
+                {
+                    "name": "PatronusIntent",
+                    "slots": [],
+                    "samples": [
+                        "to cast the spell expecto patronum",
+                        "cast the spell expecto patronum",
+                        "to cast expecto patronum",
+                        "cast expecto patronum",
+                        "expecto patronum"
+                    ]
+                },
+                {
+                    "name": "FireIntent",
+                    "slots": [],
+                    "samples": [
+                        "to cast the spell incendio",
+                        "cast the spell incendio",
+                        "to cast incendio",
+                        "cast incendio",
+                        "incendio"
+                    ]
+                },
+                {
+                    "name": "AvadaIntent",
+                    "slots": [],
+                    "samples": [
+                        "to cast the spell avada kedavra",
+                        "cast the spell avada kedavra",
+                        "to cast avada kedavra",
+                        "cast avada kedavra",
+                        "avada kedavra"
+                    ]
+                },
+                {
+                    "name": "LaunchIntent",
+                    "slots": [],
+                    "samples": [
+                        "to do magic",
+                        "to cast a spell"
+                    ]
+                },
+                {
+                    "name": "StopSpellIntent",
+                    "slots": [],
+                    "samples": [
+                        "to cast the spell finite incantatem",
+                        "cast the spell finite incantatem",
+                        "to cast finite incantatem",
+                        "cast finite incantatem",
+                        "Finite incantatem"
+                    ]
+                },
+                {
+                    "name": "LevitateIntent",
+                    "slots": [],
+                    "samples": [
+                        "to cast the spell Wingardium Leviosa",
+                        "cast the spell Wingardium Leviosa",
+                        "to cast Wingardium Leviosa",
+                        "cast Wingardium Leviosa",
+                        "Wingardium Leviosa"
+                    ]
+                }
+            ],
+            "types": []
+        }
+    }
+}
